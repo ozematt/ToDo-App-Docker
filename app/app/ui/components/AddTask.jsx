@@ -27,6 +27,7 @@ export const AddTask = () => {
   const onSubmit = (data) => {
     const newTask = { name: data.name, id: uuidv4() };
     setTasks([...tasks, newTask]);
+
     reset();
   };
 
