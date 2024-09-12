@@ -60,18 +60,21 @@ export const AddTask = () => {
           Add
         </Button>
 
-        {tasks > 1 ? (
-          <ul>
+        {tasks.length > 0 && (
+          <ul style={{ listStyle: "none", padding: "10px" }}>
             <br />
-            TaskList:
+            <h5>TaskList:</h5>
             <TaskList tasks={tasks} handleTaskDone={handleTaskDone} />
           </ul>
-        ) : null}
+        )}
         {/* <div style={{ width: "350px", borderTop: "1px solid white" }} /> */}
-        <ul>
-          Done:
-          <TasksListDone tasksDone={tasksDone} />
-        </ul>
+        {tasksDone.length > 0 && (
+          <ul style={{ listStyle: "none", padding: "10px" }}>
+            <br />
+            <h5>Done:</h5>
+            <TasksListDone tasksDone={tasksDone} />
+          </ul>
+        )}
       </Box>
     </>
   );
