@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, TextField } from "@mui/material";
+import { Box, List, TextField, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
@@ -18,6 +18,7 @@ export const AddTask = () => {
     reset,
   } = useForm({ resolver: zodResolver(schema) });
 
+  const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [tasksDone, setTasksDone] = useState([]);
 
@@ -63,19 +64,19 @@ export const AddTask = () => {
         </Button>
 
         {tasks.length > 0 && (
-          <ul style={{ listStyle: "none", padding: "10px" }}>
+          <List>
             <br />
-            <h5>TaskList:</h5>
+            <Typography variant="h5">TaskList:</Typography>
             <TaskList tasks={tasks} handleTaskDone={handleTaskDone} />
-          </ul>
+          </List>
         )}
         {/* <div style={{ width: "350px", borderTop: "1px solid white" }} /> */}
         {tasksDone.length > 0 && (
-          <ul style={{ listStyle: "none", padding: "10px" }}>
+          <List>
             <br />
-            <h5>Done:</h5>
+            <Typography variant="h5">Done:</Typography>
             <TasksListDone tasksDone={tasksDone} />
-          </ul>
+          </List>
         )}
       </Box>
     </>
