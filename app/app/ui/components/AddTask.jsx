@@ -7,6 +7,9 @@ import { v4 as uuidv4 } from "uuid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
+import { TaskList } from "./TaskList";
+import { TasksListDone } from "./TaskListDone";
+
 const schema = z
   .object({
     name: z.string().min(3),
@@ -57,31 +60,12 @@ export const AddTask = () => {
       <ul>
         <br />
         TaskList:
-        {tasks.map((task) => (
-          <div
-            style={{ display: "flex", justifyContent: "space-between" }}
-            key={task.id}
-          >
-            <li>{task.name}</li>
-            <div>
-              {" "}
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => handleTaskDone(task)}
-              >
-                Done
-              </Button>
-            </div>
-          </div>
-        ))}
+        <TaskList tasks={tasks} handleTaskDone={handleTaskDone} />
       </ul>
       <div style={{ width: "350px", borderTop: "1px solid white" }} />
       <ul>
         Done:
-        {tasksDone.map((taskDone) => (
-          <li key={taskDone.id}>{taskDone.name}</li>
-        ))}
+        <TasksListDone tasksDone={tasksDone} />
       </ul>
     </>
   );
