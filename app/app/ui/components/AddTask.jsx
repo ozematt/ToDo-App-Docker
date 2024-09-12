@@ -18,7 +18,6 @@ export const AddTask = () => {
     reset,
   } = useForm({ resolver: zodResolver(schema) });
 
-  const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [tasksDone, setTasksDone] = useState([]);
 
