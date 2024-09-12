@@ -15,6 +15,7 @@ export const AddTask = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({ resolver: zodResolver(schema) });
 
   const [tasks, setTasks] = useState([]);
@@ -25,6 +26,7 @@ export const AddTask = () => {
   const onSubmit = (data) => {
     const newTask = { name: data.name, id: uuidv4() };
     setTasks([...tasks, newTask]);
+    reset();
   };
 
   const handleTaskDone = (taskDone) => {
