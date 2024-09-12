@@ -5,16 +5,10 @@ import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { schema } from "/app/app/utils/zod/zodSchema.jsx";
 
 import { TaskList } from "./TaskList";
 import { TasksListDone } from "./TaskListDone";
-
-const schema = z
-  .object({
-    name: z.string().min(3),
-  })
-  .required();
 
 export const AddTask = () => {
   const {
