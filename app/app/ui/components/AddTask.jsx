@@ -34,33 +34,45 @@ export const AddTask = () => {
 
   return (
     <>
-      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <Box
+        sx={{ padding: "30px" }}
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <TextField
           {...register("name")}
           label="Task name"
           variant="outlined"
           sx={{
             borderRadius: "10px",
-            backgroundColor: "white",
+            backgroundColor: "lightgrey",
+            width: "550px",
           }}
-          fullWidth
           error={!!errors.name}
           helperText={errors.name && errors.name.message}
         />
-        <Button variant="contained" color="primary" type="submit">
+        <Button
+          sx={{ width: "60px", height: "55px" }}
+          variant="contained"
+          color="primary"
+          type="submit"
+        >
           Add
         </Button>
+
+        {tasks > 1 ? (
+          <ul>
+            <br />
+            TaskList:
+            <TaskList tasks={tasks} handleTaskDone={handleTaskDone} />
+          </ul>
+        ) : null}
+        {/* <div style={{ width: "350px", borderTop: "1px solid white" }} /> */}
+        <ul>
+          Done:
+          <TasksListDone tasksDone={tasksDone} />
+        </ul>
       </Box>
-      <ul>
-        <br />
-        TaskList:
-        <TaskList tasks={tasks} handleTaskDone={handleTaskDone} />
-      </ul>
-      <div style={{ width: "350px", borderTop: "1px solid white" }} />
-      <ul>
-        Done:
-        <TasksListDone tasksDone={tasksDone} />
-      </ul>
     </>
   );
 };
