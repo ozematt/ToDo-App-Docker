@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Box, Divider, List, Stack, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
@@ -33,8 +33,6 @@ export const AddTask = () => {
   const [tasks, setTasks] = useState([]);
   const [tasksDone, setTasksDone] = useState([]);
 
-  console.log(tasks);
-  console.log(tasksDone);
   //global state
   const { handleButtonClick } = useGlobalState();
 

@@ -1,4 +1,4 @@
-import { Box, ListItem, ListItemText } from "@mui/material";
+import { ListItem, ListItemText } from "@mui/material";
 import React from "react";
 
 export const TasksListDone = ({ tasksDone }) => {
