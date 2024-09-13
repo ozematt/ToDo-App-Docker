@@ -1,14 +1,22 @@
-import React, { useState } from "react";
-import { Box, TextField } from "@mui/material";
+import React, { useContext, useState } from "react";
+import { Box, List, Stack, Typography } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { schema } from "/app/app/utils/zod/zodSchema.jsx";
+import { z } from "zod";
 
 import { TaskList } from "./TaskList";
 import { TasksListDone } from "./TaskListDone";
+import { useGlobalState } from "../../utils/contextAPI";
+
+const schema = z
+  .object({
+    name: z.string().min(3),
+  })
+  .required();
 
 export const AddTask = () => {
   const {
@@ -21,11 +29,12 @@ export const AddTask = () => {
   const [tasks, setTasks] = useState([]);
   const [tasksDone, setTasksDone] = useState([]);
 
-  console.log(tasks);
+  const { handleButtonClick } = useGlobalState();
 
   const onSubmit = (data) => {
     const newTask = { name: data.name, id: uuidv4() };
     setTasks([...tasks, newTask]);
+
     reset();
   };
 
@@ -36,48 +45,66 @@ export const AddTask = () => {
 
   return (
     <>
-      <Box
-        sx={{ padding: "30px" }}
-        component="form"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <TextField
-          {...register("name")}
-          label="Task name"
-          variant="outlined"
+      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+        <Typography variant="h5"> New Task</Typography>
+        <Box
+          component="new_task"
           sx={{
-            borderRadius: "10px",
-            backgroundColor: "lightgrey",
-            width: "550px",
+            display: "inline-block",
+            width: 700,
+            maxWidth: "100%",
           }}
-          error={!!errors.name}
-          helperText={errors.name && errors.name.message}
-        />
-        <Button
-          sx={{ width: "60px", height: "55px" }}
-          variant="contained"
-          color="primary"
-          type="submit"
         >
-          Add
-        </Button>
-
-        {tasks.length > 0 && (
-          <ul style={{ listStyle: "none", padding: "10px" }}>
-            <br />
-            <h5>TaskList:</h5>
-            <TaskList tasks={tasks} handleTaskDone={handleTaskDone} />
-          </ul>
-        )}
-        {/* <div style={{ width: "350px", borderTop: "1px solid white" }} /> */}
-        {tasksDone.length > 0 && (
-          <ul style={{ listStyle: "none", padding: "10px" }}>
-            <br />
-            <h5>Done:</h5>
-            <TasksListDone tasksDone={tasksDone} />
-          </ul>
-        )}
+          <TextField
+            {...register("title")}
+            label="Title"
+            variant="outlined"
+            error={!!errors.title}
+            helperText={errors.title && errors.title.message}
+            margin="dense"
+            fullWidth
+          />
+          <TextField
+            {...register("description")}
+            label="Description"
+            variant="outlined"
+            error={!!errors.description}
+            helperText={errors.description && errors.description.message}
+            margin="dense"
+            fullWidth
+          />
+        </Box>
+        <Stack spacing={2} direction="row" sx={{ marginTop: 2 }}>
+          <Button
+            sx={{ marginRight: "10px" }}
+            variant="contained"
+            color="primary"
+            onClick={handleButtonClick}
+          >
+            Cancel
+          </Button>
+          <Button variant="contained" color="primary" type="submit">
+            Add
+          </Button>
+        </Stack>
       </Box>
+
+      {/* <Box>
+        {tasks.length > 0 && (
+          <List>
+            <br />
+            <Typography variant="h5">TaskList:</Typography>
+            <TaskList tasks={tasks} handleTaskDone={handleTaskDone} />
+          </List>
+        )}
+        {tasksDone.length > 0 && (
+          <List>
+            <br />
+            <Typography variant="h5">Done:</Typography>
+            <TasksListDone tasksDone={tasksDone} />
+          </List>
+        )}
+      </Box> */}
     </>
   );
 };

@@ -1,25 +1,39 @@
-import { Button } from "@mui/material";
+import { Box, Button, ListItem, ListItemText } from "@mui/material";
+import React from "react";
 
 export const TaskList = ({ tasks, handleTaskDone }) => {
   return (
     <>
       {tasks.map((task) => (
-        <div
-          style={{ display: "flex", justifyContent: "space-between" }}
+        <Box
+          sx={{
+            backgroundColor: "darkgrey",
+            width: "50%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderRadius: "10px",
+          }}
           key={task.id}
         >
-          <li>{task.name}</li>
-          <div>
+          <ListItem>
+            <ListItemText sx={{ color: "black" }} primary={task.name} />
+          </ListItem>
+          <Box>
             {" "}
             <Button
+              sx={{
+                height: "50px",
+                width: "100px",
+              }}
               variant="contained"
               color="primary"
               onClick={() => handleTaskDone(task)}
             >
               Done
             </Button>
-          </div>
-        </div>
+          </Box>
+        </Box>
       ))}
     </>
   );

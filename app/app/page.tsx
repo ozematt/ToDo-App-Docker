@@ -1,16 +1,17 @@
 "use client";
-import { AddTask } from "./ui/components/AddTask";
-import { Box, Button, Typography } from "@mui/material";
-import TextField from "@mui/material";
-// import { useState } from "react";
+import { App } from "./ui/components/app";
+import theme from "./ui/components/mui/theme";
+import { ThemeProvider } from "@mui/material/styles";
+import { ShowNewTaskProvider } from "./utils/contextAPI";
 
 export default function Home() {
   return (
     <>
-      <Typography variant="h5" sx={{ padding: "30px" }}>
-        ToDo-App:
-      </Typography>
-      <AddTask />
+      <ThemeProvider theme={theme}>
+        <ShowNewTaskProvider>
+          <App />
+        </ShowNewTaskProvider>
+      </ThemeProvider>
     </>
   );
 }
