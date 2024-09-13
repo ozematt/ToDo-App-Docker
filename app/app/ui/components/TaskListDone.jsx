@@ -5,21 +5,19 @@ export const TasksListDone = ({ tasksDone }) => {
   return (
     <>
       {tasksDone.map((taskDone) => (
-        <Box
-          sx={{
-            backgroundColor: "darkgrey",
-            width: "50%",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            borderRadius: "10px",
-          }}
+        <ListItem
           key={taskDone.id}
+          sx={{
+            "&:hover": {
+              backgroundColor: "action.hover",
+            },
+          }}
         >
-          <ListItem key={taskDone.id}>
-            <ListItemText sx={{ color: "black" }} primary={taskDone.name} />
-          </ListItem>
-        </Box>
+          <ListItemText
+            primary={taskDone.title}
+            secondary={taskDone.description}
+          />
+        </ListItem>
       ))}
     </>
   );

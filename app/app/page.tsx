@@ -1,5 +1,5 @@
 "use client";
-import { App } from "./ui/components/app";
+import { App } from "./ui/components/App";
 import theme from "./ui/components/mui/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { ShowNewTaskProvider } from "./utils/contextAPI";

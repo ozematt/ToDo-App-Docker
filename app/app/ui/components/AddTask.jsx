@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Box, List, Stack, Typography } from "@mui/material";
+import { Box, Divider, List, Stack, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -14,11 +14,14 @@ import { useGlobalState } from "../../utils/contextAPI";
 
 const schema = z
   .object({
-    name: z.string().min(3),
+    title: z.string().min(3),
+    description: z.string().min(5),
   })
   .required();
 
 export const AddTask = () => {
+  ////DATA
+  //form state
   const {
     register,
     formState: { errors },
@@ -26,19 +29,29 @@ export const AddTask = () => {
     reset,
   } = useForm({ resolver: zodResolver(schema) });
 
+  //task state
   const [tasks, setTasks] = useState([]);
   const [tasksDone, setTasksDone] = useState([]);
 
+  console.log(tasks);
+  console.log(tasksDone);
+  //global state
   const { handleButtonClick } = useGlobalState();
 
+  //handle add new task
   const onSubmit = (data) => {
-    const newTask = { name: data.name, id: uuidv4() };
+    const newTask = {
+      title: data.title,
+      description: data.description,
+      id: uuidv4(),
+    };
     setTasks([...tasks, newTask]);
-
     reset();
   };
 
+  //add to done list
   const handleTaskDone = (taskDone) => {
+    console.log(taskDone);
     setTasks(tasks.filter((task) => task.id !== taskDone.id));
     setTasksDone([...tasksDone, taskDone]);
   };
@@ -89,9 +102,11 @@ export const AddTask = () => {
         </Stack>
       </Box>
 
-      {/* <Box>
+      <Box>
         {tasks.length > 0 && (
           <List>
+            <br />
+            <Divider />
             <br />
             <Typography variant="h5">TaskList:</Typography>
             <TaskList tasks={tasks} handleTaskDone={handleTaskDone} />
@@ -100,11 +115,13 @@ export const AddTask = () => {
         {tasksDone.length > 0 && (
           <List>
             <br />
+            <Divider />
+            <br />
             <Typography variant="h5">Done:</Typography>
             <TasksListDone tasksDone={tasksDone} />
           </List>
         )}
-      </Box> */}
+      </Box>
     </>
   );
 };
