@@ -51,22 +51,45 @@ export const AddTask = () => {
         autoComplete="off"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <TextField
-          {...register("name")}
-          label="Title"
-          variant="outlined"
-          error={!!errors.name}
-          helperText={errors.name && errors.name.message}
-        />
-        <Button
-          sx={{ width: "60px", height: "55px" }}
-          variant="contained"
-          color="primary"
-          type="submit"
+        <Typography variant="h5"> New Task</Typography>
+        <Box
+          component="new_task"
+          sx={{
+            display: "inline-block",
+          }}
         >
-          Add
-        </Button>
+          <TextField
+            {...register("title")}
+            label="Title"
+            variant="outlined"
+            error={!!errors.title}
+            helperText={errors.title && errors.title.message}
+            sx={{ width: "600px", marginBottom: "10px" }}
+          />
+          <TextField
+            {...register("description")}
+            label="Description"
+            variant="outlined"
+            error={!!errors.description}
+            helperText={errors.description && errors.description.message}
+            sx={{ width: "600px", marginBottom: "10px" }}
+          />
+        </Box>
+        <Box sx={{}}>
+          <Button
+            sx={{ marginRight: "10px" }}
+            variant="contained"
+            color="primary"
+          >
+            Cancel
+          </Button>
+          <Button sx={{}} variant="contained" color="primary" type="submit">
+            Add
+          </Button>
+        </Box>
+      </Box>
 
+      {/* <Box>
         {tasks.length > 0 && (
           <List>
             <br />
@@ -74,7 +97,6 @@ export const AddTask = () => {
             <TaskList tasks={tasks} handleTaskDone={handleTaskDone} />
           </List>
         )}
-        {/* <div style={{ width: "350px", borderTop: "1px solid white" }} /> */}
         {tasksDone.length > 0 && (
           <List>
             <br />
@@ -82,7 +104,7 @@ export const AddTask = () => {
             <TasksListDone tasksDone={tasksDone} />
           </List>
         )}
-      </Box>
+      </Box> */}
     </>
   );
 };

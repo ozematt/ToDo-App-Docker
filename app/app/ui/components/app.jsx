@@ -2,35 +2,37 @@ import { Typography, Box, Button } from "@mui/material";
 import { AddTask } from "./AddTask";
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-// import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
+import { useState } from "react";
+import { ButtonAdd } from "./ButtonAdd";
+
 export const App = () => {
+  const [clickedButton, setClickedButton] = useState(false);
+
+  const handleButtonClick = () => {
+    setClickedButton(!clickedButton);
+  };
+
   return (
     <>
       <CssBaseline />
-      <Container fixed>
+      <Container maxWidth="sm" sx={{ padding: "10px" }}>
         <Box
-          component="section"
           sx={{
-            padding: "10px",
-            height: "20vh",
             display: "flex",
-            justifyContent: "flex-start",
+            justifyContent: "space-between",
             alignItems: "flex-start",
           }}
         >
           <Typography variant="h4" gutterBottom>
             ToDo-App:
           </Typography>
-          <Button
-            variant="outlined"
-            sx={{ padding: "10px", marginLeft: "20px" }}
-          >
-            Add New Task
-          </Button>
+          {!clickedButton && (
+            <ButtonAdd handleButtonClick={handleButtonClick} />
+          )}
         </Box>
-        <AddTask />
+        {clickedButton && <AddTask />}
       </Container>
     </>
   );
