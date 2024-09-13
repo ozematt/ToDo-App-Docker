@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, List, TextField, Typography } from "@mui/material";
+import { Box, List, Typography } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
@@ -44,19 +45,16 @@ export const AddTask = () => {
   return (
     <>
       <Box
-        sx={{ padding: "30px" }}
         component="form"
+        sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+        noValidate
+        autoComplete="off"
         onSubmit={handleSubmit(onSubmit)}
       >
         <TextField
           {...register("name")}
-          label="Task name"
+          label="Title"
           variant="outlined"
-          sx={{
-            borderRadius: "10px",
-            backgroundColor: "lightgrey",
-            width: "550px",
-          }}
           error={!!errors.name}
           helperText={errors.name && errors.name.message}
         />

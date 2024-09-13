@@ -1,14 +1,14 @@
 "use client";
-import { AddTask } from "./ui/components/AddTask";
-import { Typography } from "@mui/material";
+import { App } from "./ui/components/app";
+import theme from "./ui/components/mui/theme";
+import { ThemeProvider } from "@mui/material/styles";
 
 export default function Home() {
   return (
     <>
-      <Typography variant="h5" sx={{ padding: "30px" }}>
-        ToDo-App:
-      </Typography>
-      <AddTask />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </>
   );
 }
