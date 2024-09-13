@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Box, List, Typography } from "@mui/material";
+import { Box, List, Stack, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -45,18 +45,14 @@ export const AddTask = () => {
 
   return (
     <>
-      <Box
-        component="form"
-        sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <Typography variant="h5"> New Task</Typography>
         <Box
           component="new_task"
           sx={{
             display: "inline-block",
+            width: 700,
+            maxWidth: "100%",
           }}
         >
           <TextField
@@ -65,7 +61,8 @@ export const AddTask = () => {
             variant="outlined"
             error={!!errors.title}
             helperText={errors.title && errors.title.message}
-            sx={{ width: "600px", marginBottom: "10px" }}
+            margin="dense"
+            fullWidth
           />
           <TextField
             {...register("description")}
@@ -73,10 +70,11 @@ export const AddTask = () => {
             variant="outlined"
             error={!!errors.description}
             helperText={errors.description && errors.description.message}
-            sx={{ width: "600px", marginBottom: "10px" }}
+            margin="dense"
+            fullWidth
           />
         </Box>
-        <Box sx={{}}>
+        <Stack spacing={2} direction="row" sx={{ marginTop: 2 }}>
           <Button
             sx={{ marginRight: "10px" }}
             variant="contained"
@@ -85,10 +83,10 @@ export const AddTask = () => {
           >
             Cancel
           </Button>
-          <Button sx={{}} variant="contained" color="primary" type="submit">
+          <Button variant="contained" color="primary" type="submit">
             Add
           </Button>
-        </Box>
+        </Stack>
       </Box>
 
       {/* <Box>
