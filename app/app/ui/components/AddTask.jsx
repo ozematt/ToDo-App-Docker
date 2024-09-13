@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, List, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
@@ -10,6 +10,7 @@ import { z } from "zod";
 
 import { TaskList } from "./TaskList";
 import { TasksListDone } from "./TaskListDone";
+import { useGlobalState } from "../../utils/contextAPI";
 
 const schema = z
   .object({
@@ -28,7 +29,7 @@ export const AddTask = () => {
   const [tasks, setTasks] = useState([]);
   const [tasksDone, setTasksDone] = useState([]);
 
-  console.log(tasks);
+  const { handleButtonClick } = useGlobalState();
 
   const onSubmit = (data) => {
     const newTask = { name: data.name, id: uuidv4() };
@@ -80,6 +81,7 @@ export const AddTask = () => {
             sx={{ marginRight: "10px" }}
             variant="contained"
             color="primary"
+            onClick={handleButtonClick}
           >
             Cancel
           </Button>
