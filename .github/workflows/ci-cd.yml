@@ -95,6 +95,7 @@ jobs:
           severity: "CRITICAL,HIGH"
   tests:
     runs-on: ubuntu-latest
+
     needs: secure_scan
 
     steps:
