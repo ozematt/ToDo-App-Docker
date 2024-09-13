@@ -1,39 +1,30 @@
-import { Box, Button, ListItem, ListItemText } from "@mui/material";
+import { IconButton, ListItem, ListItemText } from "@mui/material";
+
+import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import React from "react";
 
 export const TaskList = ({ tasks, handleTaskDone }) => {
   return (
     <>
       {tasks.map((task) => (
-        <Box
-          sx={{
-            backgroundColor: "darkgrey",
-            width: "50%",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            borderRadius: "10px",
-          }}
+        <ListItem
           key={task.id}
+          sx={{
+            "&:hover": {
+              backgroundColor: "action.hover",
+            },
+          }}
+          secondaryAction={
+            <IconButton edge="end" aria-label="done">
+              <CheckCircleOutlineRoundedIcon
+                fontSize="medium"
+                onClick={() => handleTaskDone(task)}
+              />
+            </IconButton>
+          }
         >
-          <ListItem>
-            <ListItemText sx={{ color: "black" }} primary={task.name} />
-          </ListItem>
-          <Box>
-            {" "}
-            <Button
-              sx={{
-                height: "50px",
-                width: "100px",
-              }}
-              variant="contained"
-              color="primary"
-              onClick={() => handleTaskDone(task)}
-            >
-              Done
-            </Button>
-          </Box>
-        </Box>
+          <ListItemText primary={task.title} secondary={task.description} />
+        </ListItem>
       ))}
     </>
   );
