@@ -70,7 +70,6 @@ export const CustomizedSwitches = ({ checked, onChange }) => {
             onChange={onChange}
           />
         }
-        label="MUI switch"
       />
     </FormGroup>
   );
