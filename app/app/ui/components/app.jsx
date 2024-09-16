@@ -7,6 +7,7 @@ import Container from "@mui/material/Container";
 import { ButtonAdd } from "./ButtonAdd";
 import { useGlobalState } from "../../utils/contextAPI";
 import { useColorScheme } from "@mui/material";
+import { CustomizedSwitches } from "./SwitchButton";
 
 export const App = () => {
   const { clickedButton, handleButtonClick } = useGlobalState();
@@ -56,7 +57,9 @@ export const App = () => {
               <MenuItem value="dark">Dark</MenuItem>
             </Select>
           </Box>
+          <CustomizedSwitches />
         </Box>
+
         {clickedButton && <AddTask />}
       </Container>
     </>
