@@ -28,6 +28,7 @@ export const App = () => {
           {!clickedButton && (
             <ButtonAdd handleButtonClick={handleButtonClick} />
           )}
+          <SwitchButton />
         </Box>
         {clickedButton && <AddTask />}
       </Container>
