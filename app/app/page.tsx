@@ -7,11 +7,11 @@ import { ShowNewTaskProvider } from "./utils/contextAPI";
 export default function Home() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <ShowNewTaskProvider>
+      <ShowNewTaskProvider>
+        <ThemeProvider theme={theme}>
           <App />
-        </ShowNewTaskProvider>
-      </ThemeProvider>
+        </ThemeProvider>
+      </ShowNewTaskProvider>
     </>
   );
 }
