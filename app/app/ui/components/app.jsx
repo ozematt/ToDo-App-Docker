@@ -57,7 +57,12 @@ export const App = () => {
               <MenuItem value="dark">Dark</MenuItem>
             </Select>
           </Box>
-          <CustomizedSwitches />
+          <CustomizedSwitches
+            checked={mode === "dark"}
+            onChange={(event) =>
+              setMode(event.target.checked ? "dark" : "light")
+            }
+          />
         </Box>
 
         {clickedButton && <AddTask />}
