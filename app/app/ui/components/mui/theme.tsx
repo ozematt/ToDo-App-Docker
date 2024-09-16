@@ -2,9 +2,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { createTheme, useColorScheme } from "@mui/material/styles";
+import {
+  ThemeProvider,
+  createTheme,
+  useColorScheme,
+} from "@mui/material/styles";
 
-export const SwitchButton = () => {
+function MyApp() {
   const { mode, setMode } = useColorScheme();
   if (!mode) {
     return null;
@@ -35,7 +39,7 @@ export const SwitchButton = () => {
       </Select>
     </Box>
   );
-};
+}
 
 const theme = createTheme({
   colorSchemes: {
@@ -43,4 +47,10 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default function ToggleColorMode() {
+  return (
+    <ThemeProvider theme={theme}>
+      <MyApp />
+    </ThemeProvider>
+  );
+}

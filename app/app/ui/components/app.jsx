@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 
 import { ButtonAdd } from "./ButtonAdd";
 import { useGlobalState } from "../../utils/contextAPI";
+import { SwitchButton } from "./mui/theme";
 
 export const App = () => {
   const { clickedButton, handleButtonClick } = useGlobalState();
